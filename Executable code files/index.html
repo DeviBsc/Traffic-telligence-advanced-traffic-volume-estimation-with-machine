@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Volume Estimation</title>
+    <style>
+        body {
+            background-image: url("https://images.hindustantimes.com/img/2021/06/25/550x309/Delhi_traffic_1624649424939_1624649433668.jpg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: black;
+        } 
+        .form-container {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            margin-top: 40px;
+        }
+        input, select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        h1, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Traffic Volume Estimation</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <label>Holiday:</label>
+            <select name="holiday">
+                <option value="0">None</option>
+                <option value="1">Columbus Day</option>
+                <option value="2">Veterans Day</option>
+                <option value="3">Thanksgiving Day</option>
+                <option value="4">Christmas Day</option>
+                <option value="5">New Year's Day</option>
+            </select>
+
+            <label>Temperature:</label>
+            <input type="number" step="any" name="temp" required>
+
+            <label>Rain:</label>
+            <input type="number" step="any" name="rain" required>
+
+            <label>Snow:</label>
+            <input type="number" step="any" name="snow" required>
+
+            <label>Weather:</label>
+            <select name="weather">
+                <option value="1">Clouds</option>
+                <option value="2">Drizzle</option>
+                <option value="3">Rain</option>
+                <option value="4">Haze</option>
+                <option value="5">Fog</option>
+                <option value="6">Thunderstorm</option>
+                <option value="7">Snow</option>
+                <option value="8">Smoke</option>
+            </select>
+
+            <label>Year:</label>
+            <input type="number" name="year" required>
+
+            <label>Month:</label>
+            <input type="number" name="month" required>
+
+            <label>Day:</label>
+            <input type="number" name="day" required>
+
+            <label>Hours:</label>
+            <input type="number" name="hours" required>
+
+            <label>Minutes:</label>
+            <input type="number" name="minutes" required>
+
+            <label>Seconds:</label>
+            <input type="number" name="seconds" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h3>{{ prediction_text }}</h3>
+    </div>
+</body>
+</html>
